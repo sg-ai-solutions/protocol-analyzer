@@ -1,0 +1,9 @@
+[build]
+  command = "npm run build"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# SSR + Route Handlers via the Netlify Next.js runtime (not a static publish dir).
+[[plugins]]
+  package = "@netlify/plugin-nextjs"

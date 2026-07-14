@@ -1,0 +1,18 @@
+[
+  {
+    "id": "onc-fic-001",
+    "label": "OncoFic-001 | Phase II, oncology"
+  },
+  {
+    "id": "card-fic-003",
+    "label": "CardioFic-003 | Phase III, cardiology"
+  },
+  {
+    "id": "neu-fic-002",
+    "label": "NeuroFic-002 | Phase I, neurology"
+  },
+  {
+    "id": "derm-fic-004",
+    "label": "DermaFic-004 | Phase II, dermatology"
+  }
+]

@@ -1,0 +1,172 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* ── Palette: "the reviewer's desk", derived from the SG AI Solutions logo
+     (brand blue #1C83C6, brand green #58A83B). Cool clinical paper, not cream. ── */
+  --paper: #f4f7fa;
+  --paper-2: #eef3f8;
+  --ink: #0e2233;
+  --ink-soft: #4a5c6b;
+  --hairline: #d3e0ea;
+
+  --brand-blue: #1c83c6;
+  --brand-blue-deep: #14618f;
+  --brand-green: #58a83b;
+  --brand-green-deep: #3f7e2a;
+
+  --present: #3f7e2a;
+  --present-tint: #e7f2df;
+  --weak: #b9791a;
+  --weak-tint: #f7ecd6;
+  --missing: #be3a2b;
+  --missing-tint: #f7dfdb;
+
+  /* ── shadcn semantic tokens mapped onto the palette ── */
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --card: #ffffff;
+  --card-foreground: var(--ink);
+  --popover: var(--ink);
+  --popover-foreground: #ffffff;
+  --primary: var(--brand-blue);
+  --primary-foreground: #ffffff;
+  --secondary: var(--paper-2);
+  --secondary-foreground: var(--ink);
+  --muted: var(--paper-2);
+  --muted-foreground: var(--ink-soft);
+  --accent: #e6f2fb;
+  --accent-foreground: var(--ink);
+  --destructive: var(--missing);
+  --border: var(--hairline);
+  --input: var(--hairline);
+  --ring: var(--brand-blue);
+  --radius: 0.25rem;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-paper: var(--paper);
+  --color-paper-2: var(--paper-2);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-hairline: var(--hairline);
+  --color-brand-blue: var(--brand-blue);
+  --color-brand-blue-deep: var(--brand-blue-deep);
+  --color-brand-green: var(--brand-green);
+  --color-brand-green-deep: var(--brand-green-deep);
+  --color-present: var(--present);
+  --color-present-tint: var(--present-tint);
+  --color-weak: var(--weak);
+  --color-weak-tint: var(--weak-tint);
+  --color-missing: var(--missing);
+  --color-missing-tint: var(--missing-tint);
+
+  --font-display: var(--ff-display);
+  --font-sans: var(--ff-sans);
+  --font-mono: var(--ff-mono);
+
+  --radius-sm: calc(var(--radius) - 1px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 2px);
+  --radius-xl: calc(var(--radius) + 6px);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    background-color: var(--paper);
+    color: var(--ink);
+    font-family: var(--ff-sans), ui-sans-serif, system-ui, sans-serif;
+    /* faint ruled-paper grid, like a reviewer's desk blotter */
+    background-image: linear-gradient(
+      to bottom,
+      transparent,
+      transparent 31px,
+      color-mix(in srgb, var(--hairline) 40%, transparent) 32px
+    );
+    background-size: 100% 32px;
+  }
+  ::selection {
+    background: color-mix(in srgb, var(--brand-blue) 22%, transparent);
+  }
+}
+
+@layer components {
+  /* Eyebrow / kicker label: encodes section context, set in the UI sans */
+  .eyebrow {
+    font-family: var(--ff-sans), sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: var(--brand-blue-deep);
+  }
+  .rule {
+    border: 0;
+    border-top: 1px solid var(--hairline);
+  }
+  /* A sheet: the dossier's structural container, hairline, minimal radius */
+  .sheet {
+    background: var(--card);
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius);
+    box-shadow: 0 1px 0 rgba(14, 34, 51, 0.03);
+  }
+}
+
+/* Thin scrollbars for scrollable panes */
+.scroll-thin::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+.scroll-thin::-webkit-scrollbar-thumb {
+  background: var(--hairline);
+  border-radius: 6px;
+}
+.scroll-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Orchestrated reveals, respect reduced motion */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.rise {
+  animation: rise 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .rise {
+    animation: none;
+  }
+}
