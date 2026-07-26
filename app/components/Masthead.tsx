@@ -29,7 +29,7 @@ export default function Masthead() {
           <span className="eyebrow">Protocol conformity</span>
           <span className="h-px w-8 bg-hairline" />
           <span className="flex items-center gap-1.5 font-mono text-[0.68rem] tracking-wide text-ink-soft">
-            ICH-GCP E6(R2) · §6
+            ICH-GCP E6(R3) · Annex 1, App. B
             <IchReference />
           </span>
         </div>
@@ -40,7 +40,7 @@ export default function Masthead() {
 
         <p className="rise mt-5 max-w-2xl text-lg leading-relaxed text-ink-soft">
           It reads a clinical trial protocol, maps every section to
-          ICH-GCP&nbsp;E6(R2), and marks what is missing, with the{' '}
+          ICH-GCP&nbsp;E6(R3), and marks what is missing, with the{' '}
           <span className="font-medium text-ink">clause cited</span> for each
           finding.
         </p>

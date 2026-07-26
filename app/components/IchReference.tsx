@@ -10,12 +10,14 @@ import {
 } from '@/components/ui/popover';
 
 function clauseNo(clause: string): string {
-  const m = clause.match(/([\d.]+)\s*$/);
+  // Matches the trailing reference, with or without its letter prefix:
+  // "ICH E6(R3) Appendix B.10" -> "B.10".
+  const m = clause.match(/([A-Z]\.[\d.]+|[\d.]+)\s*$/);
   return m ? m[1] : clause;
 }
 
 // A small "?" that explains the standard for anyone who doesn't know ICH-GCP:
-// what the checklist is, and the 16 §6 sections the analyzer checks against.
+// what the checklist is, and the 16 Appendix B sections the analyzer checks.
 // Sections are loaded from the same reference JSON the analysis uses.
 export default function IchReference() {
   const [sections, setSections] = useState<ReferenceSection[] | null>(null);
@@ -30,7 +32,7 @@ export default function IchReference() {
   return (
     <Popover onOpenChange={handleOpen}>
       <PopoverTrigger
-        aria-label="What is ICH-GCP E6(R2) section 6?"
+        aria-label="What is ICH-GCP E6(R3) Annex 1, Appendix B?"
         className="flex h-4 w-4 items-center justify-center rounded-full border border-hairline font-mono text-[0.6rem] leading-none text-ink-soft transition-colors hover:border-brand-blue hover:text-brand-blue-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
       >
         ?
@@ -40,11 +42,13 @@ export default function IchReference() {
         className="w-80 max-w-[90vw] gap-3 bg-card p-4 text-ink ring-hairline"
       >
         <div>
-          <div className="eyebrow mb-1">ICH-GCP E6(R2) · §6</div>
+          <div className="eyebrow mb-1">ICH-GCP E6(R3) · Annex 1, App. B</div>
           <p className="text-[0.8rem] leading-relaxed text-ink-soft">
-            ICH-GCP E6(R2) is the international Good Clinical Practice standard.
-            Section 6 lists what a trial protocol should contain. The analyzer
-            checks a protocol against each of these:
+            ICH-GCP E6(R3) is the current international Good Clinical Practice
+            standard (Step 4, January 2025; effective in the EU on 23 July
+            2025). It replaces the R2 §6 protocol checklist with Annex 1,
+            Appendix B, which lists what a trial protocol should contain. The
+            analyzer checks a protocol against each of these:
           </p>
         </div>
 

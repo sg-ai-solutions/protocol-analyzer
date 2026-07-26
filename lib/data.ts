@@ -67,7 +67,7 @@ export function agentExtract(text: string): Promise<ExtractResult> {
   return postStep<ExtractResult>('/api/analyze/extract', { text });
 }
 
-// Agent 2: classify each of the 16 ICH-GCP sections against the excerpt.
+// Agent 2: classify each of the 16 E6(R3) Appendix B sections against the excerpt.
 export function agentCheck(
   text: string,
   detectedSections: string[]

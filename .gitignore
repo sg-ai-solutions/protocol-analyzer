@@ -3,4 +3,5 @@ node_modules
 out
 .playwright-mcp
 *.tsbuildinfo
+*.log
 .env

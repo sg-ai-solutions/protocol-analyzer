@@ -17,7 +17,7 @@ interface RefSection {
 const REFERENCE = reference as RefSection[];
 
 // Agent 2 of 3. Takes the excerpt plus the extractor's detected sections and
-// classifies each of the 16 ICH-GCP sections. Labels and clauses are joined
+// classifies each of the 16 E6(R3) Appendix B sections. Labels and clauses are joined
 // server-side from the reference, so they are authoritative, never hallucinated.
 const SCHEMA = {
   type: Type.OBJECT,
@@ -63,7 +63,7 @@ export async function POST(req: Request) {
     ? detectedSections.join(', ')
     : '(none detected)';
 
-  const systemInstruction = `You are the checking agent in a clinical-protocol review pipeline. You assess a protocol excerpt against the ICH-GCP E6(R2) section 6 checklist.
+  const systemInstruction = `You are the checking agent in a clinical-protocol review pipeline. You assess a protocol excerpt against the ICH-GCP E6(R3) Annex 1, Appendix B checklist (protocol content). Use E6(R3) terminology: "participant", not "subject".
 
 The 16 expected sections are:
 ${refList}

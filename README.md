@@ -3,7 +3,7 @@
 > Completeness and gaps, mapped to ICH-GCP.
 
 A public web app that reads a clinical trial protocol, maps every section to the
-public ICH-GCP E6(R2) section-6 checklist, and marks what is present, weak, or
+public ICH-GCP E6(R3) Annex 1, Appendix B checklist, and marks what is present, weak, or
 missing, with the clause cited for each finding.
 
 It has two entry points, both running the **same real, live analysis** via
@@ -37,7 +37,7 @@ the progress is genuine, never a timed fake. Shared logic lives in
 1. **Extractor** (`app/api/analyze/extract/route.ts`): segments the excerpt into
    the sections it actually contains → `{ detectedSections }`.
 2. **Checker** (`app/api/analyze/check/route.ts`): given the excerpt and the
-   detected sections, classifies each of the 16 ICH-GCP sections as
+   detected sections, classifies each of the 16 E6(R3) Appendix B sections as
    present/weak/missing with a one-line finding → `{ findings }`. Section
    **labels and clauses are joined server-side** from `reference-ichgcp.json`,
    so they are authoritative and never hallucinated.
@@ -64,7 +64,7 @@ The four sample dossiers are just source text; their analysis is produced live
 by Gemini on selection (there are no saved findings).
 
 - `public/data/protocols-index.json`: picker list (id, label).
-- `public/data/reference-ichgcp.json`: the 16 ICH-GCP E6(R2) §6 sections (id, label, clause).
+- `public/data/reference-ichgcp.json`: the 16 E6(R3) Appendix B sections (id, label, clause).
 - `public/data/protocols/<id>.json`: per-sample id, label and source text.
 
 ## Environment
@@ -97,5 +97,5 @@ environment. DNS + the `sg-ai-solutions.com/work` card are handled separately.
 
 The demo shows the engine, not the product: four synthetic samples plus a
 bounded live paste box (no file upload, no report generation in client
-templates, no integrations, generic ICH-GCP checklist only). That gap is the
+templates, no integrations, generic ICH-GCP E6(R3) checklist only). That gap is the
 paid scope.

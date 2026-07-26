@@ -15,7 +15,7 @@ const AGENTS = [
   {
     key: 'check',
     name: 'Checker',
-    task: 'Assesses each of the 16 ICH-GCP E6(R2) sections: present, weak, or missing.',
+    task: 'Assesses each of the 16 ICH-GCP E6(R3) Appendix B sections: present, weak, or missing.',
   },
   {
     key: 'assemble',

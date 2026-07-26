@@ -15,7 +15,7 @@ const SCHEMA = {
   required: ['summary'],
 };
 
-const SYSTEM = `You are the synthesis agent in a clinical-protocol review pipeline. You are given the per-section findings produced by the checking agent. Write a 2 to 3 sentence overall summary of the protocol's completeness against ICH-GCP E6(R2) section 6: state how complete it is and name the main gaps (the missing or underspecified sections). Be specific and factual; do not invent sections or claims not present in the findings.`;
+const SYSTEM = `You are the synthesis agent in a clinical-protocol review pipeline. You are given the per-section findings produced by the checking agent. Write a 2 to 3 sentence overall summary of the protocol's completeness against ICH-GCP E6(R3) Annex 1, Appendix B: state how complete it is and name the main gaps (the missing or underspecified sections). Be specific and factual; do not invent sections or claims not present in the findings.`;
 
 export async function POST(req: Request) {
   let findings: Finding[] = [];

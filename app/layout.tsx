@@ -31,7 +31,7 @@ const mono = IBM_Plex_Mono({
 export const metadata: Metadata = {
   title: 'Clinical Protocol Analyzer',
   description:
-    'Reads a clinical trial protocol, maps every section to ICH-GCP E6(R2), and marks what is missing, with the clause cited for each finding. A demonstration on synthetic protocols.',
+    'Reads a clinical trial protocol, maps every section to ICH-GCP E6(R3) Annex 1 Appendix B, and marks what is missing, with the clause cited for each finding. A demonstration on synthetic protocols.',
 };
 
 export default function RootLayout({

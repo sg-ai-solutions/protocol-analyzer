@@ -7,8 +7,8 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip';
 
-// The signature element. Each of the 16 ICH-GCP §6 sections is one segment,
-// laid out in clause order (6.1 → 6.16). Colour encodes status; the row is at
+// The signature element. Each of the 16 E6(R3) Appendix B sections is one
+// segment, in clause order (B.1 → B.16). Colour encodes status; the row is at
 // once the completeness meter and the legend. Structural, not decorative.
 
 const SEG_COLOR: Record<Status, string> = {
@@ -24,7 +24,7 @@ const STATUS_WORD: Record<Status, string> = {
 };
 
 function clauseNo(clause: string): string {
-  const m = clause.match(/([\d.]+)\s*$/);
+  const m = clause.match(/([A-Z]\.[\d.]+|[\d.]+)\s*$/);
   return m ? m[1] : clause;
 }
 
@@ -34,7 +34,7 @@ export default function ConformitySpine({ findings }: { findings: Finding[] }) {
       <div className="mb-2 flex items-baseline justify-between">
         <span className="eyebrow">Conformity spine</span>
         <span className="font-mono text-[0.7rem] text-ink-soft">
-          16 sections · ICH-GCP E6(R2) §6.1–6.16
+          16 sections · ICH-GCP E6(R3) App. B.1–B.16
         </span>
       </div>
 
