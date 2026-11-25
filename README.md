@@ -46,10 +46,12 @@ the progress is genuine, never a timed fake. Shared logic lives in
    completeness score (present / 16) and verdict are computed deterministically
    in the route, so they are never hallucinated.
 
-- Model: `gemini-flash-lite-latest` per call (~2-3s each, each well under
-  Netlify's 10s function limit; override with `GEMINI_MODEL`). Each call uses
-  structured output (`responseMimeType: application/json` + `responseSchema`,
-  `thinkingBudget: 0` for latency).
+- Model: `gemini-3.5-flash-lite` per call, pinned rather than a floating
+  `-latest` alias (~2-3s each, each well under Netlify's 10s function limit;
+  override with `GEMINI_MODEL`). Each call uses structured output
+  (`responseMimeType: application/json` + `responseSchema`) with
+  `thinkingLevel: MINIMAL` for latency; a retry drops the thinking setting if
+  the model rejects it.
 - Guardrails: reject empty (400), cap 6000 chars (400 `too_long`), fail rather
   than emit an all-missing report if a model call returns nothing, never log or
   store the input text.
